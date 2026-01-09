@@ -1,33 +1,30 @@
-import React from 'react';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import { items } from '../stores/menuItems';
+import React from "react";
+import type { MenuProps } from "antd";
+import { Menu } from "antd";
+import { useNavigate, useLocation } from "@tanstack/react-router";
+import { items } from "../stores/menuItems";
 
+const AppMenu: React.FC = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
-
-const App: React.FC = () => {
-    const onClick: MenuProps['onClick'] = (e) => {
-        console.log('click ', e);
+    const onClick: MenuProps["onClick"] = (e) => {
+        navigate({ to: e.key });
     };
 
     return (
-        <>
-            <div className='text-[28px] font-bold mb-30  flex-column'>
-                <div className='pl-10 pt-5 mb-10'>SayYes</div>
-                <Menu
-                    onClick={onClick}
-                    style={{ width: 256 }}
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    items={items}
-                />
-
-            </div>
-
-        </>
-
+        <div className="text-[28px] font-bold mb-5 flex-column">
+            <div className="pl-10 pt-5">SayYes</div>
+            <Menu
+                onClick={onClick}
+                style={{ width: 256 }}
+                selectedKeys={[location.pathname]}
+                defaultOpenKeys={["dashboard", "user", "template", "category"]}
+                mode="inline"
+                items={items}
+            />
+        </div>
     );
 };
 
-export default App;
+export default AppMenu;
