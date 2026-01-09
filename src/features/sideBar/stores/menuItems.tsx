@@ -1,13 +1,19 @@
 
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
+import CategoryIcon from '../../sideBar/assets/categoryIcon.svg';
+import DashBoardIcon from '../../sideBar/assets/dashBoardIcon.svg';
+import TemplateIcon from '../../sideBar/assets/templateIcon.svg';
+import UserIcon from '../../sideBar/assets/userIcon.svg';
+
+
+
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
     {
         key: 'sub1',
         label: 'Dashboard',
-        icon: <MailOutlined />,
+        icon: <img src={DashBoardIcon} alt="Category Icon" style={{ width: 20, height: 20 }} />,
         // type: 'group',
         children:
 
@@ -22,7 +28,7 @@ const items: MenuItem[] = [
     {
         key: 'sub1',
         label: 'User',
-        icon: <MailOutlined />,
+        icon: <img src={UserIcon} alt="Category Icon" style={{ width: 25, height: 25 }} />,
         // type: 'group',
         children:
 
@@ -37,7 +43,7 @@ const items: MenuItem[] = [
     {
         key: 'sub2',
         label: 'Template',
-        icon: <AppstoreOutlined />,
+        icon: <img src={TemplateIcon} alt="Category Icon" style={{ width: 20, height: 20 }} />,
         children: [
             { key: '5', label: 'Invitation' },
             { key: '6', label: 'MV' },
@@ -51,10 +57,9 @@ const items: MenuItem[] = [
     {
         key: 'sub4',
         label: 'Category',
-        icon: <SettingOutlined />,
+        icon: <img src={CategoryIcon} alt="Category Icon" style={{ width: 20, height: 20 }} />,
         children: [
             { key: '9', label: 'Category Management' },
-
         ],
     },
 

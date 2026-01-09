@@ -12,8 +12,8 @@ const App: React.FC = () => {
 
     return (
         <>
-            <div className='text-[28px] font-bold mb-5 flex-column'>
-                <div className='pl-10 pt-5'>SayYes</div>
+            <div className='text-[28px] font-bold mb-30  flex-column'>
+                <div className='pl-10 pt-5 mb-10'>SayYes</div>
                 <Menu
                     onClick={onClick}
                     style={{ width: 256 }}
