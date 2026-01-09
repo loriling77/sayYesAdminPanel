@@ -1,24 +1,40 @@
-import React from 'react';
-import { AudioOutlined } from '@ant-design/icons';
-import { Input, Space } from 'antd';
-import type { GetProps } from 'antd';
+/**
+ * =============================================================================
+ * SEARCH COMPONENT
+ * =============================================================================
+ *
+ * A search input box using Ant Design's Input.Search component.
+ *
+ * CURRENT STATE:
+ * --------------
+ * This is a basic search component. Right now it just shows the input.
+ * You can extend it to:
+ * - Filter table data
+ * - Search the API
+ * - Debounce input (wait before searching)
+ *
+ * FUTURE IMPROVEMENTS:
+ * --------------------
+ *   interface SearchProps {
+ *     onSearch: (value: string) => void;
+ *     placeholder?: string;
+ *   }
+ *
+ *   <Search
+ *     onSearch={(value) => setFilter(value)}
+ *     placeholder="Search users..."
+ *   />
+ *
+ * =============================================================================
+ */
 
-type SearchProps = GetProps<typeof Input.Search>;
+import React from "react";
+import { Input } from "antd";
 
-const { Search } = Input;
+const { Search: AntSearch } = Input;
 
-const suffix = <AudioOutlined style={{ fontSize: 16, color: '#1677ff' }} />;
+const Search: React.FC = () => {
+  return <AntSearch placeholder="Search..." />;
+};
 
-const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
-
-const App: React.FC = () => (
-
-
-
-    <Search placeholder="input search text" onSearch={onSearch} enterButton />
-
-
-
-);
-
-export default App;
+export default Search;
