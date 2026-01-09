@@ -1,62 +1,43 @@
-
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-type MenuItem = Required<MenuProps>['items'][number];
+import {
+  AppstoreOutlined,
+  MailOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+type MenuItem = Required<MenuProps>["items"][number];
 
 const items: MenuItem[] = [
-    {
-        key: 'sub1',
-        label: 'Dashboard',
-        icon: <MailOutlined />,
-        // type: 'group',
-        children:
-
-            [
-                { key: '1', label: 'Dashboard' },
-
-            ],
-
-
-
-    },
-    {
-        key: 'sub1',
-        label: 'User',
-        icon: <MailOutlined />,
-        // type: 'group',
-        children:
-
-            [
-                { key: '1', label: 'UserInfo' },
-
-            ],
-
-
-
-    },
-    {
-        key: 'sub2',
-        label: 'Template',
-        icon: <AppstoreOutlined />,
-        children: [
-            { key: '5', label: 'Invitation' },
-            { key: '6', label: 'MV' },
-            { key: '7', label: 'Poster' },
-
-        ],
-    },
-    {
-        type: 'divider',
-    },
-    {
-        key: 'sub4',
-        label: 'Category',
-        icon: <SettingOutlined />,
-        children: [
-            { key: '9', label: 'Category Management' },
-
-        ],
-    },
-
+  {
+    key: "dashboard",
+    label: "Dashboard",
+    icon: <MailOutlined />,
+    children: [{ key: "/dashboard", label: "Dashboard" }],
+  },
+  {
+    key: "user",
+    label: "User",
+    icon: <MailOutlined />,
+    children: [{ key: "/user", label: "UserInfo" }],
+  },
+  {
+    key: "template",
+    label: "Template",
+    icon: <AppstoreOutlined />,
+    children: [
+      { key: "/template/invitation", label: "Invitation" },
+      { key: "/template/mv", label: "MV" },
+      { key: "/template/poster", label: "Poster" },
+    ],
+  },
+  {
+    type: "divider",
+  },
+  {
+    key: "category",
+    label: "Category",
+    icon: <SettingOutlined />,
+    children: [{ key: "/category", label: "Category Management" }],
+  },
 ];
+
 export { items };
