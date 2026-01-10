@@ -22,14 +22,14 @@
  * }
  */
 export interface CategoryResponse {
-  /** Unique identifier for the category */
-  id: string;
+    /** Unique identifier for the category */
+    id: string;
 
-  /** Name of the category (can be empty) */
-  categoryName?: string;
+    /** Name of the category (can be empty) */
+    categoryName?: string;
 
-  /** Emoji or icon representing the category (can be empty) */
-  icon?: string;
+    /** Emoji or icon representing the category (can be empty) */
+    icon?: string;
 }
 
 /**
@@ -44,9 +44,12 @@ export interface CategoryResponse {
  * }
  */
 export interface CreateCategoryRequest {
-  /** Required: Name of the category */
-  categoryName: string;
+    /** Required: Name of the category */
+    categoryName: string;
 
-  /** Optional: Emoji or icon for the category */
-  icon?: string;
+    /** Optional: Emoji or icon for the category */
+    icon?: string;
 }
+
+
+export type UpdateCategoryRequest = CategoryResponse;
