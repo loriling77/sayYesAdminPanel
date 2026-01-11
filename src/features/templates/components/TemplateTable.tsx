@@ -6,19 +6,19 @@ import { createTemplateColumns } from "./template-columns";
 interface TemplateTableProps {
     templates?: TemplateResponse[];
     loading?: boolean;
-    onView?: (id: string) => void;
-    onEdit?: (template: TemplateResponse) => void;
-    onDelete?: (id: string) => void;
+
+    onEdit?: (id: string) => void;
+    onDelete?: ((id: string) => void | undefined) | undefined;
+    handleOpenModal?: (template: TemplateResponse) => void;
+    handleCloseModal?: () => void;
 }
 
 export const TemplateTable: React.FC<TemplateTableProps> = ({
-    templates = [],
+    templates,
     loading = false,
-    onView,
     onEdit,
-    onDelete,
-}) => {
-    const columns = createTemplateColumns({ onView, onEdit, onDelete });
+    onDelete }) => {
+    const columns = createTemplateColumns({ onEdit, onDelete });
 
     return (
         <Table<TemplateResponse>

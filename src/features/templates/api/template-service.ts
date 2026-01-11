@@ -15,5 +15,9 @@ export const templateService = {
 
     getTemplate: (id: string) => {
         return apiClient.get<TemplateResponse>(`/api/templates/${id}`);
+    },
+
+    deleteTemplate: (id: string) => {
+        return apiClient.delete(`/api/templates/${id}`);
     }
 };

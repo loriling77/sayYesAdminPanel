@@ -55,7 +55,9 @@ const App: React.FC<ModalFormProps> = ({ handleClose, onClickCreate }) => (
                 name="categoryicon"
                 rules={[{ required: true, message: 'Please upload category icon!' }]}
             >
-                <ModalUpload />
+                <ModalUpload onClickCreate={function (data: CreateCategoryRequest): void {
+                    throw new Error('Function not implemented.');
+                }} />
             </Form.Item>
 
 

@@ -165,6 +165,8 @@ export default function SlidesTemplate() {
                         </View>
 
                         <Text className='mb-[40px] text-gray-400 tracking-widest'>- SEE YOU THERE -</Text>
+
+
                     </View>
                 </ScrollView>
             </View>

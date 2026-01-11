@@ -3,14 +3,14 @@ import type { TableProps } from "antd";
 import type { TemplateResponse } from "@/types";
 
 interface TemplateColumnsProps {
-    onView?: (id: string) => void;
-    onEdit?: (template: TemplateResponse) => void;
+    onEdit?: (id: string) => void;
+
     onDelete?: (id: string) => void;
 }
 
 export const createTemplateColumns = ({
-    onView,
     onEdit,
+
     onDelete,
 }: TemplateColumnsProps): TableProps<TemplateResponse>["columns"] => [
         {
@@ -65,16 +65,12 @@ export const createTemplateColumns = ({
             key: "action",
             render: (_, record) => (
                 <Space size="middle">
-                    {onView && (
-                        <Button type="link" onClick={() => onView(record.id)}>
-                            View
-                        </Button>
-                    )}
                     {onEdit && (
-                        <Button type="link" onClick={() => onEdit(record)}>
+                        <Button type="link" onClick={() => onEdit(record.id)}>
                             Edit
                         </Button>
                     )}
+
                     {onDelete && (
                         <Button type="link" danger onClick={() => onDelete(record.id)}>
                             Delete

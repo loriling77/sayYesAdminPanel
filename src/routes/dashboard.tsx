@@ -24,41 +24,43 @@
  * =============================================================================
  */
 
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useUsers } from "@/features/users/api";
 import { useTemplates } from "@/features/templates/api";
 import { useCategories } from "@/features/categories/api";
 import { ViewPort } from "@/features/viewPort/components";
-import { StatisticsCards, QuickActionsCard } from "./dashboard/components";
+import { StatisticsCards, QuickActionsCard } from "../features/dashBoard/components";
 
 export const Route = createFileRoute("/dashboard")({
-  component: Dashboard,
+    component: Dashboard,
 });
 
+
+
 function Dashboard() {
-  // Fetch data from all three endpoints
-  // Each hook manages its own loading/error state
-  const { data: users, isLoading: usersLoading } = useUsers();
-  const { data: templates, isLoading: templatesLoading } = useTemplates();
-  const { data: categories, isLoading: categoriesLoading } = useCategories();
+    // Fetch data from all three endpoints
+    // Each hook manages its own loading/error state
+    const { data: users, isLoading: usersLoading } = useUsers();
+    const { data: templates, isLoading: templatesLoading } = useTemplates();
+    const { data: categories, isLoading: categoriesLoading } = useCategories();
 
-  return (
-    <ViewPort>
-      {/* Page title */}
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+    return (
+        <ViewPort>
+            {/* Page title */}
+            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
-      {/* Statistics cards showing counts */}
-      <StatisticsCards
-        userCount={users?.length || 0}
-        templateCount={templates?.length || 0}
-        categoryCount={categories?.length || 0}
-        usersLoading={usersLoading}
-        templatesLoading={templatesLoading}
-        categoriesLoading={categoriesLoading}
-      />
+            {/* Statistics cards showing counts */}
+            <StatisticsCards
+                userCount={users?.length || 0}
+                templateCount={templates?.length || 0}
+                categoryCount={categories?.length || 0}
+                usersLoading={usersLoading}
+                templatesLoading={templatesLoading}
+                categoriesLoading={categoriesLoading}
+            />
 
-      {/* Quick actions and recent activity */}
-      <QuickActionsCard />
-    </ViewPort>
-  );
+            {/* Quick actions and recent activity */}
+            <QuickActionsCard />
+        </ViewPort>
+    );
 }

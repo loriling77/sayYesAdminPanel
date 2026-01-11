@@ -40,3 +40,14 @@ export const useTemplate = () => {
         },
     });
 }
+
+export const useDeleteTemplate = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: (id: string) => templateService.deleteTemplate(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: templateKeys.lists() });
+        },
+    });
+}
