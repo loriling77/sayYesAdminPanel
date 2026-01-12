@@ -19,10 +19,10 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+    component: Index,
 });
 
 function Index() {
-  // Automatically redirect to the dashboard
-  return <Navigate to="/dashboard" />;
+    // Automatically redirect to the dashboard
+    return <Navigate to="/login" />;
 }

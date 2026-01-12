@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserRouteImport } from './routes/user'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CategoryRouteImport } from './routes/category'
 import { Route as IndexRouteImport } from './routes/index'
@@ -20,6 +21,11 @@ import { Route as TemplateInvitationRouteImport } from './routes/template.invita
 const UserRoute = UserRouteImport.update({
   id: '/user',
   path: '/user',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/user': typeof UserRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/user': typeof UserRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/user': typeof UserRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/login'
     | '/user'
     | '/template/invitation'
     | '/template/mv'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/login'
     | '/user'
     | '/template/invitation'
     | '/template/mv'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/login'
     | '/user'
     | '/template/invitation'
     | '/template/mv'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoryRoute: typeof CategoryRoute
   DashboardRoute: typeof DashboardRoute
+  LoginRoute: typeof LoginRoute
   UserRoute: typeof UserRoute
   TemplateInvitationRoute: typeof TemplateInvitationRoute
   TemplateMvRoute: typeof TemplateMvRoute
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/user'
       fullPath: '/user'
       preLoaderRoute: typeof UserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoryRoute: CategoryRoute,
   DashboardRoute: DashboardRoute,
+  LoginRoute: LoginRoute,
   UserRoute: UserRoute,
   TemplateInvitationRoute: TemplateInvitationRoute,
   TemplateMvRoute: TemplateMvRoute,

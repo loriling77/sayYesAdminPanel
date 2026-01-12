@@ -45,27 +45,32 @@
  * =============================================================================
  */
 
+import Menu from "@/features/sideBar/components/menu";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import Menu from "../features/sideBar/components/menu";
 
 /**
  * The root layout component.
  * This wraps every page in the application.
  */
 const RootLayout = () => (
-  <div className="flex">
-    {/* Sidebar menu - always visible on the left */}
-    <Menu />
 
-    {/* Main content area - page content renders here */}
-    <div className="flex-1">
-      <Outlet />
+
+    <div className="flex">
+        {/* Sidebar menu - always visible on the left */}
+
+
+
+        {/* Main content area - page content renders here */}
+        <div className="flex-1">
+            <Outlet />
+        </div>
+
+        {/* Developer tools - only visible in development mode */}
+        <TanStackRouterDevtools />
     </div>
 
-    {/* Developer tools - only visible in development mode */}
-    <TanStackRouterDevtools />
-  </div>
+
 );
 
 /**
