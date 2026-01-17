@@ -37,11 +37,7 @@
  * =============================================================================
  */
 
-import {
-    AppstoreOutlined,
-    MailOutlined,
-    SettingOutlined,
-} from "@ant-design/icons";
+
 import CategoryIcon from '../assets/categoryIcon.svg'
 import DashBoardIcon from '../assets/dashBoardIcon.svg'
 import TemplateIcon from '../assets/templateIcon.svg'
@@ -82,6 +78,15 @@ const items: MenuItem[] = [
         label: "Category",
         icon: <img src={CategoryIcon} className='w-5 h-5' ></img>,
         children: [{ key: "/category", label: "Category Management" }],
+    },
+    {
+        key: "settings",
+        label: "Settings",
+        icon: <img src={CategoryIcon} className='w-5 h-5' ></img>,
+        children: [
+            { key: "/settings/account", label: "Settings Management" },
+
+        ],
     },
 ];
 

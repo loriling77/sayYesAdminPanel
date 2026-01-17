@@ -78,7 +78,5 @@ function Category() {
         </ViewPort>
     );
 }
-function createCategory() {
-    throw new Error("Function not implemented.");
-}
+
 

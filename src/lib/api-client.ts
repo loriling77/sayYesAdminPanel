@@ -74,14 +74,25 @@ export const apiClient = {
             },
         });
 
+        // Get response text first
+        const text = await response.text();
+
         // Check if the request was successful
         // response.ok is true if status code is 200-299
         if (!response.ok) {
-            throw new Error(`API Error: ${response.statusText}`);
+            // Try to parse error as JSON, otherwise use text
+            let errorMessage = response.statusText;
+            try {
+                const errorData = text ? JSON.parse(text) : {};
+                errorMessage = errorData.message || errorData.error || response.statusText;
+            } catch {
+                errorMessage = text || response.statusText;
+            }
+            throw new Error(errorMessage);
         }
 
         // Parse the JSON response and return it
-        return response.json();
+        return text ? JSON.parse(text) : ({} as T);
     },
 
     /**
@@ -107,11 +118,23 @@ export const apiClient = {
             body: JSON.stringify(data),
         });
 
+        // Get response text first
+        const text = await response.text();
+
         if (!response.ok) {
-            throw new Error(`API Error: ${response.statusText}`);
+            // Try to parse error as JSON, otherwise use text
+            let errorMessage = response.statusText;
+            try {
+                const errorData = text ? JSON.parse(text) : {};
+                errorMessage = errorData.message || errorData.error || response.statusText;
+            } catch {
+                errorMessage = text || response.statusText;
+            }
+            throw new Error(errorMessage);
         }
 
-        return response.json();
+        // Parse response as JSON if there's content
+        return text ? JSON.parse(text) : ({} as T);
     },
 
     /**
@@ -145,10 +168,23 @@ export const apiClient = {
             },
             body: JSON.stringify(data),
         });
+
+        // Get response text first
+        const text = await response.text();
+
         if (!response.ok) {
-            throw new Error(`API Error: ${response.statusText}`);
+            // Try to parse error as JSON, otherwise use text
+            let errorMessage = response.statusText;
+            try {
+                const errorData = text ? JSON.parse(text) : {};
+                errorMessage = errorData.message || errorData.error || response.statusText;
+            } catch {
+                errorMessage = text || response.statusText;
+            }
+            throw new Error(errorMessage);
         }
 
-        return response.json();
+        // Parse response as JSON if there's content
+        return text ? JSON.parse(text) : ({} as T);
     }
 }

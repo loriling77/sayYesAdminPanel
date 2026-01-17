@@ -1,4 +1,4 @@
-import LoginPage from '@/features/login/components/login-page'
+import LoginForm from '@/features/login/components/login-form'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/login')({
@@ -6,5 +6,5 @@ export const Route = createFileRoute('/login')({
 })
 
 function Login() {
-    return <LoginPage></LoginPage>
+    return <LoginForm></LoginForm>
 }

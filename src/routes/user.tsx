@@ -37,51 +37,51 @@ import { ViewPort } from "@/features/viewPort/components";
  * createFileRoute('/user') tells the router this page is at /user
  */
 export const Route = createFileRoute("/user")({
-  component: User,
+    component: User,
 });
 
 /**
  * The User page component.
  */
 function User() {
-  // Fetch all users from the server
-  // data: the list of users (undefined while loading)
-  // isLoading: true while fetching
-  // error: error object if something went wrong
-  const { data: users, isLoading, error } = useUsers();
+    // Fetch all users from the server
+    // data: the list of users (undefined while loading)
+    // isLoading: true while fetching
+    // error: error object if something went wrong
+    const { data: users, isLoading, error } = useUsers();
 
-  // Hook for deleting users
-  // deleteUser.mutate(id) - call this to delete a user
-  // deleteUser.isPending - true while delete is in progress
-  const deleteUser = useDeleteUser();
+    // Hook for deleting users
+    // deleteUser.mutate(id) - call this to delete a user
+    // deleteUser.isPending - true while delete is in progress
+    const deleteUser = useDeleteUser();
 
-  // If there was an error fetching users, show error message
-  if (error) {
+    // If there was an error fetching users, show error message
+    if (error) {
+        return (
+            <ViewPort>
+                <ErrorMessage message={error.message} />
+            </ViewPort>
+        );
+    }
+
+    // Render the page
     return (
-      <ViewPort>
-        <ErrorMessage message={error.message} />
-      </ViewPort>
+        <ViewPort>
+            {/* Page header with title */}
+            <PageHeader title="User Information" createButtonText="Create User" />
+
+            {/* Search box */}
+            <div className="mb-5">
+                <Search />
+            </div>
+
+            {/* User table */}
+            <UserTable
+                users={users}
+                loading={isLoading}
+                onDelete={(id) => deleteUser.mutate(id)}
+                deleteLoading={deleteUser.isPending}
+            />
+        </ViewPort>
     );
-  }
-
-  // Render the page
-  return (
-    <ViewPort>
-      {/* Page header with title */}
-      <PageHeader title="User Information" createButtonText="Create User" />
-
-      {/* Search box */}
-      <div className="mb-5">
-        <Search />
-      </div>
-
-      {/* User table */}
-      <UserTable
-        users={users}
-        loading={isLoading}
-        onDelete={(id) => deleteUser.mutate(id)}
-        deleteLoading={deleteUser.isPending}
-      />
-    </ViewPort>
-  );
 }

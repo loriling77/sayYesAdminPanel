@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UserRouteImport } from './routes/user'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgotPassword'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CategoryRouteImport } from './routes/category'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TemplatePosterRouteImport } from './routes/template.poster'
 import { Route as TemplateMvRouteImport } from './routes/template.mv'
 import { Route as TemplateInvitationRouteImport } from './routes/template.invitation'
+import { Route as SettingsAccountRouteImport } from './routes/settings.account'
 
 const UserRoute = UserRouteImport.update({
   id: '/user',
@@ -26,6 +28,11 @@ const UserRoute = UserRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgotPassword',
+  path: '/forgotPassword',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -58,13 +65,20 @@ const TemplateInvitationRoute = TemplateInvitationRouteImport.update({
   path: '/template/invitation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsAccountRoute = SettingsAccountRouteImport.update({
+  id: '/settings/account',
+  path: '/settings/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/forgotPassword': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/user': typeof UserRoute
+  '/settings/account': typeof SettingsAccountRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
   '/template/poster': typeof TemplatePosterRoute
@@ -73,8 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/forgotPassword': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/user': typeof UserRoute
+  '/settings/account': typeof SettingsAccountRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
   '/template/poster': typeof TemplatePosterRoute
@@ -84,8 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/category': typeof CategoryRoute
   '/dashboard': typeof DashboardRoute
+  '/forgotPassword': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/user': typeof UserRoute
+  '/settings/account': typeof SettingsAccountRoute
   '/template/invitation': typeof TemplateInvitationRoute
   '/template/mv': typeof TemplateMvRoute
   '/template/poster': typeof TemplatePosterRoute
@@ -96,8 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/forgotPassword'
     | '/login'
     | '/user'
+    | '/settings/account'
     | '/template/invitation'
     | '/template/mv'
     | '/template/poster'
@@ -106,8 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/forgotPassword'
     | '/login'
     | '/user'
+    | '/settings/account'
     | '/template/invitation'
     | '/template/mv'
     | '/template/poster'
@@ -116,8 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/category'
     | '/dashboard'
+    | '/forgotPassword'
     | '/login'
     | '/user'
+    | '/settings/account'
     | '/template/invitation'
     | '/template/mv'
     | '/template/poster'
@@ -127,8 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoryRoute: typeof CategoryRoute
   DashboardRoute: typeof DashboardRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   UserRoute: typeof UserRoute
+  SettingsAccountRoute: typeof SettingsAccountRoute
   TemplateInvitationRoute: typeof TemplateInvitationRoute
   TemplateMvRoute: typeof TemplateMvRoute
   TemplatePosterRoute: typeof TemplatePosterRoute
@@ -148,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgotPassword': {
+      id: '/forgotPassword'
+      path: '/forgotPassword'
+      fullPath: '/forgotPassword'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -192,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TemplateInvitationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings/account': {
+      id: '/settings/account'
+      path: '/settings/account'
+      fullPath: '/settings/account'
+      preLoaderRoute: typeof SettingsAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -199,8 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoryRoute: CategoryRoute,
   DashboardRoute: DashboardRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   UserRoute: UserRoute,
+  SettingsAccountRoute: SettingsAccountRoute,
   TemplateInvitationRoute: TemplateInvitationRoute,
   TemplateMvRoute: TemplateMvRoute,
   TemplatePosterRoute: TemplatePosterRoute,

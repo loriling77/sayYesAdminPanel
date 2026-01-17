@@ -59,3 +59,5 @@ export * from "./template.types";
 
 // Template response types - describes template data received FROM the API
 export * from "./template-response.types";
+
+export * from "./login.types";

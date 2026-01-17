@@ -35,43 +35,43 @@ import { useNavigate, useLocation } from "@tanstack/react-router";
 import { items } from "../stores/menuItems";
 
 const AppMenu: React.FC = () => {
-  // Get the navigate function from TanStack Router
-  const navigate = useNavigate();
+    // Get the navigate function from TanStack Router
+    const navigate = useNavigate();
 
-  // Get current location (which page we're on)
-  const location = useLocation();
+    // Get current location (which page we're on)
+    const location = useLocation();
 
-  /**
-   * Handle menu item click.
-   *
-   * When user clicks a menu item:
-   * 1. e.key contains the path (like '/dashboard')
-   * 2. We call navigate() to go to that page
-   */
-  const onClick: MenuProps["onClick"] = (e) => {
-    navigate({ to: e.key });
-  };
+    /**
+     * Handle menu item click.
+     *
+     * When user clicks a menu item:
+     * 1. e.key contains the path (like '/dashboard')
+     * 2. We call navigate() to go to that page
+     */
+    const onClick: MenuProps["onClick"] = (e) => {
+        navigate({ to: e.key });
+    };
 
-  return (
-    <div className="text-[28px] font-bold mb-5 flex-column">
-      {/* App logo/title */}
-      <div className="pl-10 pt-5">SayYes</div>
+    return (
+        <div className="text-[28px] font-bold mb-5 flex-column">
+            {/* App logo/title */}
+            <div className="pl-10 pt-5">SayYes</div>
 
-      {/* The menu itself */}
-      <Menu
-        onClick={onClick}
-        style={{ width: 256 }}
-        // Highlight the menu item that matches current URL
-        selectedKeys={[location.pathname]}
-        // Which submenus are open by default
-        defaultOpenKeys={["dashboard", "user", "template", "category"]}
-        // Vertical menu with expandable submenus
-        mode="inline"
-        // The menu items from our configuration
-        items={items}
-      />
-    </div>
-  );
+            {/* The menu itself */}
+            <Menu
+                onClick={onClick}
+                style={{ width: 256 }}
+                // Highlight the menu item that matches current URL
+                selectedKeys={[location.pathname]}
+                // Which submenus are open by default
+                defaultOpenKeys={["dashboard", "user", "template", "category", "settings"]}
+                // Vertical menu with expandable submenus
+                mode="inline"
+                // The menu items from our configuration
+                items={items}
+            />
+        </div>
+    );
 };
 
 export default AppMenu;

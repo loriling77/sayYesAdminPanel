@@ -30,6 +30,7 @@ import { useTemplates } from "@/features/templates/api";
 import { useCategories } from "@/features/categories/api";
 import { ViewPort } from "@/features/viewPort/components";
 import { StatisticsCards, QuickActionsCard } from "../features/dashBoard/components";
+import { PageHeader } from "@/components/PageHeader";
 
 export const Route = createFileRoute("/dashboard")({
     component: Dashboard,
@@ -47,7 +48,10 @@ function Dashboard() {
     return (
         <ViewPort>
             {/* Page title */}
-            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+            <PageHeader
+                title="Dashboard"
+
+            />
 
             {/* Statistics cards showing counts */}
             <StatisticsCards

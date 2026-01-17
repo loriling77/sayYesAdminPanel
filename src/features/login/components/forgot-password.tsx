@@ -1,97 +1,76 @@
-import React from 'react';
-import { Button, Form, Input, Space } from 'antd';
-import type { FormProps } from 'antd';
-import { createStyles } from 'antd-style';
+import React, { useState } from 'react';
+import { Form, Input, Button, Row, Col, message } from 'antd';
+import { Link } from '@tanstack/react-router';
 
-const useStyles = createStyles(({ token }) => ({
-    root: {
-        padding: token.padding,
-        maxWidth: 800,
-        marginTop: 32,
-        backgroundColor: token.colorBgContainer,
-        borderRadius: token.borderRadius,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    },
-}));
+const ForgotPassword: React.FC = () => {
+    const [loading, setLoading] = useState(false);
 
-const stylesObject: FormProps['styles'] = {
-    label: {
-        textAlign: 'end',
-        color: '#333',
-        fontWeight: 500,
-    },
-    content: {
-        paddingInlineStart: 12,
-    },
-};
+    const onFinish = async (values: any) => {
+        setLoading(true);
+        console.log('Forgot password:', values);
 
-const stylesFunction: FormProps['styles'] = (info) => {
-    if (info.props.variant === 'filled') {
-        return {
-            root: {
-                border: '1px solid #1677FF',
-            },
-            label: {
-                textAlign: 'end',
-                color: '#1677FF',
-            },
-            content: {
-                paddingInlineStart: 12,
-            },
-        } satisfies FormProps['styles'];
-    }
-    return {};
-};
-
-const App: React.FC = () => {
-    const { styles: classNames } = useStyles();
-
-    const sharedProps: FormProps = {
-        labelCol: { span: 4 },
-        wrapperCol: { span: 20 },
-        autoComplete: 'off',
-        classNames,
+        message.success('Password reset link has been sent to your email');
+        setLoading(false);
     };
 
-    const sharedFormContent = (
-        <>
-            <Form.Item
-                label="Username"
-                name="username"
-                rules={[{ required: true, message: 'Please enter username!' }]}
-            >
-                <Input placeholder="Please enter username" />
-            </Form.Item>
-
-            <Form.Item
-                label="Email"
-                name="email"
-                rules={[{ required: true, message: 'Please enter email!' }]}
-            >
-                <Input placeholder="Please enter email" />
-            </Form.Item>
-
-            <Form.Item label={null}>
-                <Space>
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                    <Button htmlType="reset">reset</Button>
-                </Space>
-            </Form.Item>
-        </>
-    );
-
     return (
-        <>
-            <Form {...sharedProps} styles={stylesObject}>
-                {sharedFormContent}
-            </Form>
-            <Form {...sharedProps} styles={stylesFunction} variant="filled">
-                {sharedFormContent}
-            </Form>
-        </>
+        <div className="min-h-screen  flex items-center justify-center px-6">
+            {/* Background decoration */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+                <div className="absolute top-1/3 -right-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl" />
+            </div>
+
+            {/* Card */}
+            <div className="relative w-full max-w-md bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-8">
+                {/* Header */}
+                <div className="mb-8 text-center">
+                    <h1 className="text-2xl font-semibold text-gray-900">Forgot your password?</h1>
+                    <p className="mt-2 text-sm text-gray-500">
+                        Enter your email and we will send you a reset link
+                    </p>
+                </div>
+
+                {/* Form */}
+                <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
+                    <Form.Item
+                        label="E-mail"
+                        name="email"
+                        rules={[
+                            { required: true, message: 'Please input your email' },
+                            { type: 'email', message: 'Invalid email format' },
+                        ]}
+                    >
+                        <Input size="large" placeholder="you@example.com" />
+                    </Form.Item>
+
+                    <Form.Item className="mt-6">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            size="large"
+                            loading={loading}
+                            block
+                        >
+                            Send reset link
+                        </Button>
+                    </Form.Item>
+                </Form>
+
+                {/* Footer */}
+                <Row justify="space-between" className="mt-6 text-sm">
+                    <Col>
+                        <Link to="/login">
+                            <a className="text-blue-600 hover:underline">Back to login</a>
+                        </Link>
+                    </Col>
+                    <Col className="text-gray-500">
+                        Need help? Contact admin
+                    </Col>
+                </Row>
+            </div>
+        </div>
     );
 };
 
-export default App;
+export default ForgotPassword;
